@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bases de Telecomunícate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@1,700;1,800&family=Barlow:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Plan: mismo mundo visual que el roll-up de la campaña (fondo azul grisáceo, bocadillos blancos, azul + naranja, titulares en cursiva condensada). Un solo tema, a propósito. */
+:root {
+  --bg: #e2edf1;
+  --surface: #ffffff;
+  --ink: #2a506b;
+  --blue: #45b6e3;
+  --orange: #f5a019;
+  --bubble: #b0d2dd;
+  --muted: #3f6680;
+  --display: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.5; }
+main { max-width: 620px; margin: 0 auto; padding: 0 18px 48px; display: grid; gap: 34px; }
+h1, h2, h3 { font-family: var(--display); font-style: italic; font-weight: 800; line-height: 1; margin: 0; text-wrap: balance; }
+h2 { font-size: 2.1rem; text-transform: uppercase; letter-spacing: -0.01em; }
+h2 span { color: var(--blue); }
+h3 { font-size: 1.4rem; font-weight: 700; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+svg { display: block; }
+img { max-width: 100%; display: block; }
+
+/* Portada */
+.hero { padding-top: 28px; display: grid; gap: 0; }
+.bubble { background: var(--surface); border-radius: 120px; padding: 30px 38px 32px; justify-self: start; display: grid; gap: 10px; }
+.bubble h1 { font-size: clamp(3.4rem, 17vw, 5.2rem); line-height: .86; letter-spacing: -0.02em; text-transform: uppercase; }
+.bubble h1 .b { color: var(--blue); }
+.tail { margin-left: 70px; margin-top: -1px; }
+.tag { font-family: var(--display); font-style: italic; font-weight: 700; font-size: 1.15rem; text-transform: uppercase; letter-spacing: .03em; color: var(--muted); }
+.hero .lead { font-size: 1.2rem; font-weight: 600; margin-top: 10px; }
+.hero img { width: 100%; max-width: 440px; justify-self: center; margin-top: 6px; }
+
+section { display: grid; gap: 14px; }
+.card { background: var(--surface); border-radius: 24px; padding: 18px 20px; }
+
+/* Qué contar: bocadillos */
+.ideas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.idea { display: grid; gap: 6px; align-content: start; position: relative; }
+.idea::after { content: ""; position: absolute; left: 26px; bottom: -12px; border: 8px solid transparent; border-top: 12px solid var(--surface); border-bottom: 0; }
+.idea .ic { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: var(--bubble); color: var(--ink); }
+.idea .ic svg { width: 24px; height: 24px; }
+.note { background: var(--bubble); border-radius: 18px; padding: 12px 16px; font-weight: 600; margin-top: 6px; }
+
+/* Pasos */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.step { display: flex; gap: 16px; align-items: center; }
+.num { flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-family: var(--display); font-style: italic; font-weight: 800; font-size: 2.2rem; background: var(--blue); }
+.num.o { background: var(--orange); }
+.step div { min-width: 0; }
+
+/* Requisitos */
+.rules { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.rule { background: var(--bubble); border-radius: 22px; padding: 16px; display: grid; gap: 6px; justify-items: start; }
+.rule svg { width: 32px; height: 32px; }
+.rule .big { font-family: var(--display); font-style: italic; font-weight: 800; font-size: 2rem; line-height: 1; }
+.rule p { font-size: .98rem; }
+
+/* Sí / No */
+.yesno { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.yesno ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.yesno li { display: flex; gap: 8px; align-items: flex-start; font-size: .98rem; font-weight: 500; }
+.yesno li svg { width: 18px; height: 18px; flex: none; margin-top: 3px; }
+.yesno h3 { font-size: 1.8rem; margin-bottom: 10px; }
+.yes h3, .yes svg { color: var(--blue); }
+.no h3, .no svg { color: #d88809; }
+
+/* Después */
+.flow { display: grid; gap: 10px; }
+.flow .card { display: flex; gap: 14px; align-items: center; }
+.flow .ic { flex: none; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; background: var(--orange); color: #fff; }
+.flow .card:nth-child(2) .ic { background: var(--blue); }
+.flow .ic svg { width: 26px; height: 26px; }
+
+details { background: var(--surface); border-radius: 18px; padding: 14px 18px; }
+details + details { margin-top: 8px; }
+summary { font-weight: 700; cursor: pointer; }
+summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+details p { margin-top: 8px; color: var(--muted); }
+
+footer { display: grid; justify-items: center; gap: 10px; padding-top: 10px; }
+footer img { width: 100%; max-width: 420px; }
+
+@media (max-width: 380px) {
+  .ideas, .rules, .yesno { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  details[open] p { animation: fade .2s ease-out; }
+  @keyframes fade { from { opacity: .4; } to { opacity: 1; } }
+}
+</style>
+</head>
+<body>
+<main>
+
+  <header class="hero">
+    <div class="bubble">
+      <p class="tag">Bases de participación</p>
+      <h1><span class="b">Tele</span>co<br>muní<br>cate!</h1>
+    </div>
+    <svg class="tail" width="70" height="40" viewBox="0 0 70 40" aria-hidden="true"><path d="M0 0 H52 L64 40 Z" fill="#ffffff"/></svg>
+    <p class="lead">Ven al hall de la ETSIT, grábate o hazte una foto delante del cartel y cuéntale algo a toda la escuela. Pueden participar alumnos y profesores.</p>
+    <img src="escena.png" alt="Dos personajes de Telecomunícate grabándose con el aro de luz y un micrófono">
+  </header>
+
+  <section aria-labelledby="que">
+    <h2 id="que">¿Qué <span>puedes contar?</span></h2>
+    <div class="ideas">
+      <div class="card idea">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span>
+        <h3>Una anécdota</h3>
+        <p class="muted">Algo que te pasó en la escuela.</p>
+      </div>
+      <div class="card idea">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg></span>
+        <h3>Un mensaje</h3>
+        <p class="muted">Para alguien de la escuela.</p>
+      </div>
+      <div class="card idea">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>
+        <h3>Una declaración</h3>
+        <p class="muted">De amor, de amistad o a una asignatura.</p>
+      </div>
+      <div class="card idea">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.3 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg></span>
+        <h3>Un «gracias»</h3>
+        <p class="muted">A quien te haya ayudado.</p>
+      </div>
+    </div>
+    <p class="note">¿No se te ocurre nada? Cada semana propondremos un tema en nuestras redes.</p>
+  </section>
+
+  <section aria-labelledby="como">
+    <h2 id="como">¿Cómo <span>participar?</span></h2>
+    <ol class="steps">
+      <li class="card step"><span class="num o">1</span><div><h3>Ponte frente al cartel</h3><p class="muted">Está en el hall de la ETSIT. Que se vea detrás de ti.</p></div></li>
+      <li class="card step"><span class="num">2</span><div><h3>Móvil en el aro de luz</h3><p class="muted">Colócalo en el soporte y encuádrate con el cartel detrás.</p></div></li>
+      <li class="card step"><span class="num">3</span><div><h3>Grábate o hazte una foto</h3><p class="muted">Un vídeo de 30 segundos como máximo o una foto. Repítelo las veces que quieras.</p></div></li>
+      <li class="card step"><span class="num o">4</span><div><h3>Envíanoslo</h3><p class="muted">Por mensaje directo al Instagram de la ETSIT: <strong>@telecoupv</strong>.</p></div></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="req">
+    <h2 id="req">Requisitos</h2>
+    <div class="rules">
+      <div class="rule">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></svg>
+        <h3>Tu propio móvil</h3>
+        <p>La escuela pone el aro de luz; el móvil lo pones tú.</p>
+      </div>
+      <div class="rule">
+        <span class="big">30 s</span>
+        <h3>Máximo por vídeo</h3>
+        <p>Los vídeos más largos no se publicarán. Las fotos también valen.</p>
+      </div>
+      <div class="rule">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M15 14.2c.6-.1 1.3-.2 2-.2 2.8 0 4 2 4 4.5"/></svg>
+        <h3>Solo o en grupo</h3>
+        <p>Todas las personas que salgan deben estar de acuerdo.</p>
+      </div>
+      <div class="rule">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>
+        <h3>Sin insultos</h3>
+        <p>Ni palabrotas ni nada ofensivo, o no lo podremos subir.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="vale">
+    <h2 id="vale">Qué vale <span>y qué no</span></h2>
+    <div class="yesno">
+      <div class="card yes">
+        <h3>Sí</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Humor y buen rollo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Mensajes a alguien sin dejarle en evidencia</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Hablar de asignaturas, profes o la cafetería con respeto</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Castellano, valenciano o inglés</li>
+        </ul>
+      </div>
+      <div class="card no">
+        <h3>No</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Insultos o palabrotas</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Burlarse de alguien o señalarle</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Datos personales de otros: teléfonos, cuentas, direcciones</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Grabar o fotografiar a alguien sin su permiso</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Publicidad o música de fondo</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="despues">
+    <h2 id="despues">Qué pasa <span>después</span></h2>
+    <div class="flow">
+      <div class="card">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/></svg></span>
+        <div><h3>Lo revisamos</h3><p class="muted">Vemos todos los vídeos y fotos antes de publicar nada.</p></div>
+      </div>
+      <div class="card">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="4"/><circle cx="12" cy="12" r="3.5"/></svg></span>
+        <div><h3>Lo subimos a stories</h3><p class="muted">Si cumple las normas, lo publicamos en las historias de Instagram y TikTok de la ETSIT.</p></div>
+      </div>
+      <div class="card">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.7"/><path d="M4 4v4h4"/></svg></span>
+        <div><h3>Puedes echarte atrás</h3><p class="muted">Si cambias de idea, escríbenos y lo retiramos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="imagen">
+    <h2 id="imagen">Tu <span>imagen</span></h2>
+    <div class="card">
+      <p>Al enviarnos tu vídeo o tu foto, aceptas que la ETSIT lo publique en sus redes sociales. Si sale más gente contigo, asegúrate de que todos están de acuerdo antes de enviarlo.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="faq">
+    <h2 id="faq">Dudas <span>rápidas</span></h2>
+    <div>
+      <details>
+        <summary>¿Puedo grabarme fuera del hall?</summary>
+        <p>No. Tiene que verse el cartel de Telecomunícate detrás de ti.</p>
+      </details>
+      <details>
+        <summary>¿Puedo enviar más de un vídeo o foto?</summary>
+        <p>Sí, envía todos los que quieras.</p>
+      </details>
+      <details>
+        <summary>¿Tengo que decir mi nombre?</summary>
+        <p>No hace falta. Tú decides si te presentas o no.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto tarda en publicarse?</summary>
+        <p>Depende de cuántos vídeos recibamos. Revisamos lo que nos llega cada semana.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <img src="logos.png" alt="Universitat Politècnica de València · Telecom UPV VLC">
+  </footer>
+</main>
+</body>
+</html>
